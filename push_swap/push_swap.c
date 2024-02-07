@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:18:31 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/01 16:09:16 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:49:03 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,26 @@ Make work for 3 numbers:
 ./push_swap "2 5 1"
 
 Steps:
-- Create stack, 
-- Add each no. to stack
-- Retrieve stack
+- Create stack, -ok
+- Add each no. to stack -ok
+- Retrieve stack -ok
+
+ERROR CHECKS:
+- If repeat, don't put on list (print error or just omit??)
+- If more than 11 characters
+- check if outside max/min int
+--> print error message or initiate stackk
+
+
+-- rotate stack a
+-- swap stack a
 */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 #include <stdlib.h>
 #include <unistd.h>
-
+#include <stdio.h>
 
 void	add_to_stack(long int nb, t_Node **stack)
 {
@@ -58,36 +68,88 @@ void	retrieve_stack(t_Node *stack)
 	}
 }
 
-
-t_Node    *find_last_node(t_Node *lst)
+t_Node	*find_last_node(t_Node *lst)
 {
-    t_Node    *ptr;
+	t_Node	*ptr;
 
-    if (lst == NULL)
-        return (NULL);
-    
-    ptr = lst;
-    while (ptr->next != NULL)
-         ptr = ptr->next;
-    return (ptr);
+	if (lst == NULL)
+		return (NULL);
+	ptr = lst;
+	while (ptr->next != NULL)
+		ptr = ptr->next;
+	return (ptr);
 }
+int	check_valid(char *nums[])
+{
+	int i;
+	int j;
+	
+	i = 0;
+	while (nums[i])
+	{
+		j = 0;
+		//1. check for repeat numbers
+		while (nums[i][j])
+		{
+			if (nums[i + 1] && nums[i][j] == nums[i+1][j])
+				return (-1);
+			j++;
+		}
+		//2. check for only digits
+		j= 0;
+		while (nums[i][j])
+		{
+			if ((nums[i][j] < 48 || nums[i][j] > 57) && nums[i][0] != '-')
+				return (-1);
+			j++;
+		}
+		//3. check if more than 11 chars
+		/*if (j > 11)//check this!
+			return (-1);*/
+		//4. check if outside max/min int
+		if (ft_atol(nums[i]) < -2147483648 || ft_atol(nums[i]) > 2147483647)
+			return (-1);
+		i++;
+		}
+		return (0);
+}
+
+
+/*int	check_repeat(int nb, t_Node *stack)
+{
+	t_Node	*ptr;
+	if (stack == NULL)
+		return (0);
+	ptr = stack;
+	while (ptr != NULL)
+	{	
+		if (ptr->num == nb)
+			return (1);
+		ptr = ptr->next;
+	}
+	return (0);
+}*/
 int	main(int argc, char *argv[])
 {
 	int			i;
 	long int	nb;
-	t_Node		*stack = NULL;
-	int			argc_flag;
+	t_Node		*stack;
 
-	argc_flag = 0;
+	stack = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0])) //Check for incorrect argument counts or if the 2nd argument is `0`
 		return (1);
 	else if (argc == 2) //Check if the argument count is 2 and the 2nd is not empty, this implies a string
 	{
 		argv = ft_split(argv[1], ' ');
 		i = 0;
+		if (check_valid(&argv[i]) == -1)
+		{
+			ft_putendl_fd("error", 2);
+			return(0);
+		}
 		while (argv[i]) //add to stack
 		{
-			nb = ft_atol(argv[i]); //convert str to long int -- need to create own function.
+			nb = ft_atol(argv[i]); //convert str to long int.
 			add_to_stack(nb, &stack);
 			i++;
 		}
@@ -95,14 +157,22 @@ int	main(int argc, char *argv[])
 	else
 	{
 		i = 1;
+		if (check_valid(&argv[i]) == -1)
+		{
+			ft_putendl_fd("error", 2);
+			return(0);
+		}
 		while (i < argc) //add to stack
 		{
 			nb = ft_atol(argv[i]); //convert str to long int -- need to create own function.
-			add_to_stack(nb, &stack);
+			add_to_stack(nb, &stack);//return number of items in stack?? to use for stack b and sorti ng algorithm choice?
 			i++;
 		}
 	}
+	//initiate stack b
+	//sort 3
+	
 	retrieve_stack(stack);
 	free(stack);
-	return(0);
+	return (0);
 }
