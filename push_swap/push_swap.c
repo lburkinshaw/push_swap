@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:18:31 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/07 15:49:03 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:32:36 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,33 @@ t_Node	*find_last_node(t_Node *lst)
 		ptr = ptr->next;
 	return (ptr);
 }
+int check_repeat(char *current, char *next[])
+{
+	int i;
+	int j;
+	int rep;
+	
+	i = 0;
+	j = 0;
+	while (next[j])
+	{
+		rep = 1;
+		while (current[i] || next[j][i])
+		{
+			if (current[i] != next[j][i])
+			{
+				rep = 0;
+				break ;
+			}
+			i++;
+		}
+		if (rep == 1)
+			return (1);
+		j++;
+	}
+	return (0);
+}
+
 int	check_valid(char *nums[])
 {
 	int i;
@@ -89,18 +116,17 @@ int	check_valid(char *nums[])
 	{
 		j = 0;
 		//1. check for repeat numbers
-		while (nums[i][j])
-		{
-			if (nums[i + 1] && nums[i][j] == nums[i+1][j])
-				return (-1);
-			j++;
+		if (nums[i + 1])
+		{	
+			if (check_repeat(nums[i], &nums[i+1]) == 1)
+				return (1);
 		}
 		//2. check for only digits
-		j= 0;
+		j = 0;
 		while (nums[i][j])
 		{
 			if ((nums[i][j] < 48 || nums[i][j] > 57) && nums[i][0] != '-')
-				return (-1);
+				return (1);
 			j++;
 		}
 		//3. check if more than 11 chars
@@ -108,27 +134,12 @@ int	check_valid(char *nums[])
 			return (-1);*/
 		//4. check if outside max/min int
 		if (ft_atol(nums[i]) < -2147483648 || ft_atol(nums[i]) > 2147483647)
-			return (-1);
+			return (1);
 		i++;
-		}
+	}
 		return (0);
 }
 
-
-/*int	check_repeat(int nb, t_Node *stack)
-{
-	t_Node	*ptr;
-	if (stack == NULL)
-		return (0);
-	ptr = stack;
-	while (ptr != NULL)
-	{	
-		if (ptr->num == nb)
-			return (1);
-		ptr = ptr->next;
-	}
-	return (0);
-}*/
 int	main(int argc, char *argv[])
 {
 	int			i;
@@ -142,7 +153,7 @@ int	main(int argc, char *argv[])
 	{
 		argv = ft_split(argv[1], ' ');
 		i = 0;
-		if (check_valid(&argv[i]) == -1)
+		if (check_valid(&argv[i]) == 1)
 		{
 			ft_putendl_fd("error", 2);
 			return(0);
@@ -157,7 +168,7 @@ int	main(int argc, char *argv[])
 	else
 	{
 		i = 1;
-		if (check_valid(&argv[i]) == -1)
+		if (check_valid(&argv[i]) == 1)
 		{
 			ft_putendl_fd("error", 2);
 			return(0);
