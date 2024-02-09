@@ -6,38 +6,28 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:06:25 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/09 10:41:07 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:42:36 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int check_repeat(char *current, char *next[], int i)
+int	check_repeat_stack(t_node *stack)
 {
-	int j;
-	int k;
-	int rep;
+	t_node	*current_ptr;
+	t_node	*nxt_ptr;
 	
-	j = 0;
-	k = 0;
-	if (current[0] == '+')
-		i++;
-	while (next[j])
+	if (stack == NULL)
+		return (1);
+	current_ptr = stack;
+	nxt_ptr = stack->next;
+	while (current_ptr->next != NULL && nxt_ptr != NULL)
 	{
-		rep = 1;
-		while (current[i] || next[j][k])
-		{
-			if (next[j][0] == '+')
-				k++;
-			if (current[i++] != next[j][k++])
-			{
-				rep = 0;
-				break ;
-			}
-		}
-		if (rep == 1)
+		while (current_ptr->num != nxt_ptr->num && nxt_ptr->next != NULL)
+			nxt_ptr = nxt_ptr->next;
+		if (current_ptr->num == nxt_ptr->num)
 			return (1);
-		j++;
+		current_ptr = current_ptr->next;
 	}
 	return (0);
 }
@@ -58,7 +48,7 @@ int check_digit(char *nums)
 	return (0);
 }
 
-int	check_valid(char *nums[])
+int	check_valid(char **nums)
 {
 	int i;
 	int j;
@@ -67,11 +57,6 @@ int	check_valid(char *nums[])
 	while (nums[i])
 	{
 		j = 0;
-		if (nums[i + 1])
-		{
-			if (check_repeat(nums[i], &nums[i+1], 0) == 1)
-				return (1);
-		}
 		j = 0;
 		if (check_digit(nums[i]))
 			return (1);

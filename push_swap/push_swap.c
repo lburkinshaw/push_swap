@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:18:31 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/08 17:01:49 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:39:14 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,12 @@ ERROR CHECKS:
 #include <unistd.h>
 #include <stdio.h>
 
-int count_strings(char const *s, char c)
+void	add_nb(long int nb, t_node **stack)
 {
-	int	i;
-	int	j;
+	t_node	*new_node;
+	t_node	*last_ptr;
 
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (s[i] != c && (!i || s[i - 1] == c))
-			j++;
-		i++;
-	}
-	return (j);
-}
-void	add_to_stack(long int nb, t_Node **stack)
-{
-	t_Node	*new_node;
-	t_Node	*last_ptr;
-
-	new_node = malloc(sizeof(t_Node));
+	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		return ;
 	new_node->next = NULL;
@@ -71,23 +56,23 @@ void	add_to_stack(long int nb, t_Node **stack)
 	last_ptr->next = new_node;
 }
 
-void	retrieve_stack(t_Node *stack)
+void	retrieve_stack(t_node *stack)
 {
 	if (stack == NULL)
 		return ;
-	while (stack)
+	t_node *ptr = stack;
+	while (ptr)
 	{
-		ft_printf("%d\n", stack->num);
+		ft_printf("%d\n", ptr->num);
 		//ft_putnbr_fd(stack->num, 1);//change to ft_printf?
 		//ft_putchar_fd('\n', 1);
-		stack = stack->next;
-		
+		ptr = ptr->next;
 	}
 }
 
-t_Node	*find_last_node(t_Node *lst)
+t_node	*find_last_node(t_node *lst)
 {
-	t_Node	*ptr;
+	t_node	*ptr;
 
 	if (lst == NULL)
 		return (NULL);
@@ -97,53 +82,63 @@ t_Node	*find_last_node(t_Node *lst)
 	return (ptr);
 }
 
-int initiate_stack_a(int ac, char *av[], t_Node **stack)
+void	add_args_to_stack(char **arguments, t_node **stack)
 {
-	long int	nb;
-	int			i;
+	int i;
+	int	nb;
+	
+	i = 0;
+	while (arguments[i]) //add to stack
+	{
+		nb = ft_atoi(arguments[i]); //convert str to long int -- need to create own function.
+		add_nb(nb, stack);//return number of items in stack?? to use for stack b and sorti ng algorithm choice?
+		i++;
+	}
+}
+
+int initiate_stack_a(int ac, char *av[], t_node **stack)
+{
 	char		**arguments;
+	int			free_flag;
 	
 	arguments = NULL;
+	free_flag = 0;
 	if (ac == 2) //Check if the argument count is 2 and the 2nd is not empty, this implies a string
 	{
 		arguments = ft_split(av[1], ' ');
-		/*while (av[i])
-		{
-			printf("%s\n", av[i]);
-			i++;
-		}	*/
+		free_flag = 1;
 	}
 	else
 		arguments = av + 1;
 	if (!arguments[1])
 			return (1);
-	i = 0;
-	if (check_valid(&arguments[i]) == 1)
+	if (check_valid(arguments) == 1)
+		return (write(2, "error\n", 6)); //ft_putendl_fd("error", 2);
+	
+	add_args_to_stack(arguments, stack);
+	if (check_repeat_stack(*stack) == 1)//this can go in main to save lines if necessary
 	{
-		ft_putendl_fd("error", 2);
-		return(0);
+		write(2, "error\n", 6);
+		free(*stack);
+		return (1);
 	}
-	while (arguments[i]) //add to stack
-	{
-		nb = ft_atol(arguments[i]); //convert str to long int -- need to create own function.
-		add_to_stack(nb, stack);//return number of items in stack?? to use for stack b and sorti ng algorithm choice?
-		i++;
-	}
-	return(0);
+	if (free_flag)//check this is right.
+		free(arguments);
+	return (0);
 }
 
 int	main(int argc, char *argv[])
 {
-	t_Node		*stack;
+	t_node		*stack;
 
 	stack = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0])) //Check for incorrect argument counts or if the 2nd argument is `0`
 		return (1);
-	if (initiate_stack_a(argc, argv, &stack) == 1) //checks that more than one number
+	if (initiate_stack_a(argc, argv, &stack) == 1) //Checks that more than one number
 		return (1);
 	//initiate stack b
 	//sort 3
-		retrieve_stack(stack);
+	retrieve_stack(stack);
 	free(stack);
 	return (0);
 }
