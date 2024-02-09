@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:16:40 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/09 13:25:06 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:33:33 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ int		check_valid(char **nums);
 int 	check_repeat(char *current, char *next[], int i);
 int		check_repeat_stack(t_node *stack);
 int		count_strings(char **s);
-
+void	free_split(char **arguments);
+void	free_stack(t_node **stack, int error);
+void	error_n_exit(void);
 #endif

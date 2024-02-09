@@ -6,7 +6,7 @@
 #    By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:26:43 by lburkins          #+#    #+#              #
-#    Updated: 2024/02/01 16:12:17 by lburkins         ###   ########.fr        #
+#    Updated: 2024/02/08 10:51:44 by lburkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,23 +47,20 @@ CFILES	=	ft_atoi.c \
 			ft_strtrim.c \
 			ft_strmapi.c \
 			ft_striteri.c \
+			ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c \
+			ft_lstlast.c \
+			ft_lstadd_back.c \
+			ft_lstdelone.c \
+			ft_lstclear.c \
 			ft_printf.c \
 			ft_printf_print_csp.c \
 			ft_printf_print_diux.c \
 			get_next_line.c \
 			get_next_line_utils.c
 
-B_CFILES	=	ft_lstnew_bonus.c \
-				ft_lstadd_front_bonus.c \
-				ft_lstsize_bonus.c \
-				ft_lstlast_bonus.c \
-				ft_lstadd_back_bonus.c \
-				ft_lstdelone_bonus.c \
-				ft_lstclear_bonus.c
-
 OFILES = $(CFILES:.c=.o)
-
-B_OFILES = $(B_CFILES:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -74,18 +71,13 @@ all: $(NAME)
 $(NAME): $(OFILES)
 	ar rcs $(NAME) $(OFILES) 
 
-bonus: .bonus
-
-.bonus: $(OFILES) $(B_OFILES)
-	ar rcs $(NAME) $(B_OFILES)
-	touch .bonus
 
 clean:
-	rm -f $(OFILES) $(B_OFILES) .bonus
+	rm -f $(OFILES)
 
 fclean: clean
 	rm -f $(NAME) 
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

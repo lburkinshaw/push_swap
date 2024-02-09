@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:18:31 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/09 13:39:14 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:38:06 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void	add_nb(long int nb, t_node **stack)
 
 void	retrieve_stack(t_node *stack)
 {
+	t_node	*ptr;
+
 	if (stack == NULL)
 		return ;
-	t_node *ptr = stack;
+	ptr = stack;
 	while (ptr)
 	{
 		ft_printf("%d\n", ptr->num);
-		//ft_putnbr_fd(stack->num, 1);//change to ft_printf?
-		//ft_putchar_fd('\n', 1);
 		ptr = ptr->next;
 	}
 }
@@ -84,9 +84,9 @@ t_node	*find_last_node(t_node *lst)
 
 void	add_args_to_stack(char **arguments, t_node **stack)
 {
-	int i;
+	int	i;
 	int	nb;
-	
+
 	i = 0;
 	while (arguments[i]) //add to stack
 	{
@@ -100,7 +100,7 @@ int initiate_stack_a(int ac, char *av[], t_node **stack)
 {
 	char		**arguments;
 	int			free_flag;
-	
+
 	arguments = NULL;
 	free_flag = 0;
 	if (ac == 2) //Check if the argument count is 2 and the 2nd is not empty, this implies a string
@@ -111,19 +111,14 @@ int initiate_stack_a(int ac, char *av[], t_node **stack)
 	else
 		arguments = av + 1;
 	if (!arguments[1])
-			return (1);
+		return (1);
 	if (check_valid(arguments) == 1)
-		return (write(2, "error\n", 6)); //ft_putendl_fd("error", 2);
-	
+		error_n_exit(); //ft_putendl_fd("error", 2);
 	add_args_to_stack(arguments, stack);
 	if (check_repeat_stack(*stack) == 1)//this can go in main to save lines if necessary
-	{
-		write(2, "error\n", 6);
-		free(*stack);
-		return (1);
-	}
+		free_stack(stack, 1);
 	if (free_flag)//check this is right.
-		free(arguments);
+		free_split(arguments);
 	return (0);
 }
 
@@ -139,6 +134,6 @@ int	main(int argc, char *argv[])
 	//initiate stack b
 	//sort 3
 	retrieve_stack(stack);
-	free(stack);
+	free_stack(&stack, 0);
 	return (0);
 }
