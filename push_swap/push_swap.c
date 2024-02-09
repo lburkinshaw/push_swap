@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:18:31 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/08 10:32:36 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:01:49 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,21 @@ ERROR CHECKS:
 #include <unistd.h>
 #include <stdio.h>
 
+int count_strings(char const *s, char c)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if (s[i] != c && (!i || s[i - 1] == c))
+			j++;
+		i++;
+	}
+	return (j);
+}
 void	add_to_stack(long int nb, t_Node **stack)
 {
 	t_Node	*new_node;
@@ -62,9 +77,11 @@ void	retrieve_stack(t_Node *stack)
 		return ;
 	while (stack)
 	{
-		ft_putnbr_fd(stack->num, 1);
+		ft_printf("%d\n", stack->num);
+		//ft_putnbr_fd(stack->num, 1);//change to ft_printf?
+		//ft_putchar_fd('\n', 1);
 		stack = stack->next;
-		ft_putchar_fd('\n', 1);
+		
 	}
 }
 
@@ -79,111 +96,54 @@ t_Node	*find_last_node(t_Node *lst)
 		ptr = ptr->next;
 	return (ptr);
 }
-int check_repeat(char *current, char *next[])
-{
-	int i;
-	int j;
-	int rep;
-	
-	i = 0;
-	j = 0;
-	while (next[j])
-	{
-		rep = 1;
-		while (current[i] || next[j][i])
-		{
-			if (current[i] != next[j][i])
-			{
-				rep = 0;
-				break ;
-			}
-			i++;
-		}
-		if (rep == 1)
-			return (1);
-		j++;
-	}
-	return (0);
-}
 
-int	check_valid(char *nums[])
+int initiate_stack_a(int ac, char *av[], t_Node **stack)
 {
-	int i;
-	int j;
+	long int	nb;
+	int			i;
+	char		**arguments;
 	
-	i = 0;
-	while (nums[i])
+	arguments = NULL;
+	if (ac == 2) //Check if the argument count is 2 and the 2nd is not empty, this implies a string
 	{
-		j = 0;
-		//1. check for repeat numbers
-		if (nums[i + 1])
-		{	
-			if (check_repeat(nums[i], &nums[i+1]) == 1)
-				return (1);
-		}
-		//2. check for only digits
-		j = 0;
-		while (nums[i][j])
+		arguments = ft_split(av[1], ' ');
+		/*while (av[i])
 		{
-			if ((nums[i][j] < 48 || nums[i][j] > 57) && nums[i][0] != '-')
-				return (1);
-			j++;
-		}
-		//3. check if more than 11 chars
-		/*if (j > 11)//check this!
-			return (-1);*/
-		//4. check if outside max/min int
-		if (ft_atol(nums[i]) < -2147483648 || ft_atol(nums[i]) > 2147483647)
+			printf("%s\n", av[i]);
+			i++;
+		}	*/
+	}
+	else
+		arguments = av + 1;
+	if (!arguments[1])
 			return (1);
+	i = 0;
+	if (check_valid(&arguments[i]) == 1)
+	{
+		ft_putendl_fd("error", 2);
+		return(0);
+	}
+	while (arguments[i]) //add to stack
+	{
+		nb = ft_atol(arguments[i]); //convert str to long int -- need to create own function.
+		add_to_stack(nb, stack);//return number of items in stack?? to use for stack b and sorti ng algorithm choice?
 		i++;
 	}
-		return (0);
+	return(0);
 }
 
 int	main(int argc, char *argv[])
 {
-	int			i;
-	long int	nb;
 	t_Node		*stack;
 
 	stack = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0])) //Check for incorrect argument counts or if the 2nd argument is `0`
 		return (1);
-	else if (argc == 2) //Check if the argument count is 2 and the 2nd is not empty, this implies a string
-	{
-		argv = ft_split(argv[1], ' ');
-		i = 0;
-		if (check_valid(&argv[i]) == 1)
-		{
-			ft_putendl_fd("error", 2);
-			return(0);
-		}
-		while (argv[i]) //add to stack
-		{
-			nb = ft_atol(argv[i]); //convert str to long int.
-			add_to_stack(nb, &stack);
-			i++;
-		}
-	}
-	else
-	{
-		i = 1;
-		if (check_valid(&argv[i]) == 1)
-		{
-			ft_putendl_fd("error", 2);
-			return(0);
-		}
-		while (i < argc) //add to stack
-		{
-			nb = ft_atol(argv[i]); //convert str to long int -- need to create own function.
-			add_to_stack(nb, &stack);//return number of items in stack?? to use for stack b and sorti ng algorithm choice?
-			i++;
-		}
-	}
+	if (initiate_stack_a(argc, argv, &stack) == 1) //checks that more than one number
+		return (1);
 	//initiate stack b
 	//sort 3
-	
-	retrieve_stack(stack);
+		retrieve_stack(stack);
 	free(stack);
 	return (0);
 }

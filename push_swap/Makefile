@@ -6,13 +6,14 @@
 #    By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 12:00:18 by lburkins          #+#    #+#              #
-#    Updated: 2024/02/01 15:06:00 by lburkins         ###   ########.fr        #
+#    Updated: 2024/02/08 14:07:31 by lburkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-CFILES =	push_swap.c
+CFILES =	push_swap.c \
+			check_valid.c
 
 CFLAGS = -Wall -Wextra -Werror
 
