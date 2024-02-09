@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:06:25 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/09 10:16:31 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/09 10:41:07 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	check_valid(char *nums[])
 		if (j > 11)
 			return (1);
 		if (ft_atol(nums[i]) < -2147483648 || ft_atol(nums[i]) > 2147483647)
-			return (1);d
+			return (1);
 		i++;
 	}
 	return (0);
