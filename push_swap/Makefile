@@ -6,15 +6,18 @@
 #    By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 12:00:18 by lburkins          #+#    #+#              #
-#    Updated: 2024/02/09 14:27:35 by lburkins         ###   ########.fr        #
+#    Updated: 2024/02/12 11:21:10 by lburkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 CFILES =	push_swap.c \
+			init_n_retrieve_stack.c \
 			check_valid.c \
-			error_handling.c
+			error_handling.c \
+			sort_stack.c
+			
 
 CFLAGS = -Wall -Wextra -Werror
 

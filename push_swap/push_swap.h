@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:16:40 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/09 15:33:33 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/12 12:22:20 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ void	retrieve_stack(t_node *stack);
 t_node	*find_last_node(t_node *lst);
 int		initiate_stack_a(int ac, char *av[], t_node **stack);
 int		check_valid(char **nums);
-int 	check_repeat(char *current, char *next[], int i);
 int		check_repeat_stack(t_node *stack);
-int		count_strings(char **s);
+void	sort_stack(t_node	**stack);
+int		count_nums(t_node	*stack);
+int		check_sorted(t_node	*stack);
 void	free_split(char **arguments);
 void	free_stack(t_node **stack, int error);
 void	error_n_exit(void);

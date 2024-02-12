@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:27:17 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/09 15:36:40 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/12 09:48:15 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	error_n_exit(void)
 
 void	free_split(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (array[i])
