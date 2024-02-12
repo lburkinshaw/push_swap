@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:16:40 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/12 12:22:20 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:04:13 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "libft/libft.h"
 #include <stdlib.h>
+#include <limits.h>
 
 typedef struct Node
 {
@@ -31,6 +32,8 @@ int		initiate_stack_a(int ac, char *av[], t_node **stack);
 int		check_valid(char **nums);
 int		check_repeat_stack(t_node *stack);
 void	sort_stack(t_node	**stack);
+t_node	*find_max(t_node *stack);
+t_node	*find_min(t_node *stack);
 int		count_nums(t_node	*stack);
 int		check_sorted(t_node	*stack);
 void	free_split(char **arguments);

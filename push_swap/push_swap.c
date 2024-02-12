@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:18:31 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/12 13:59:58 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:19:26 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char *argv[])
 	if (argc == 1 || (argc == 2 && !argv[1][0])) //Check for incorrect argument counts or if the 2nd argument is `0`
 		return (1);
 	if (initiate_stack_a(argc, argv, &stack) == 1) //Checks that more than one number
-		return (1);
+		return (1);//do i  need to print error message?
 	sort_stack(&stack);
 	//else if more than 3 args...
 	//stack B: only reassign nodes from stack a. No need to malloc new nodes.

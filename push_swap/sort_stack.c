@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:20:36 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/12 13:52:32 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:56:07 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,16 @@ void	sort_stack(t_node	**stack)//could return int 1/0 to indicate success/error?
 	int	count;
 
 	count = count_nums(*stack);
-	ft_printf("%d\n", count);
+	//ft_printf("%d\n", count);
 	if (count == 0)
 		return ;//or print error?
 	if (check_sorted(*stack) == 1)
 	{
 		ft_printf("sorted\n");//delete this
 		return ;
-	}	
-	/*if (count_nums(stack) == 3)
+	}
+	find_max(*stack);
+	find_min(*stack);
+	/*if (count == 3)
 		sort_three(&stack);*/
 }

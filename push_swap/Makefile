@@ -6,7 +6,7 @@
 #    By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 12:00:18 by lburkins          #+#    #+#              #
-#    Updated: 2024/02/12 11:21:10 by lburkins         ###   ########.fr        #
+#    Updated: 2024/02/12 15:51:23 by lburkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CFILES =	push_swap.c \
 			init_n_retrieve_stack.c \
 			check_valid.c \
 			error_handling.c \
-			sort_stack.c
+			sort_stack.c \
+			stack_utils.c
 			
 
 CFLAGS = -Wall -Wextra -Werror
