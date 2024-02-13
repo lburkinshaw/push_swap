@@ -6,7 +6,7 @@
 #    By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 12:00:18 by lburkins          #+#    #+#              #
-#    Updated: 2024/02/12 15:51:23 by lburkins         ###   ########.fr        #
+#    Updated: 2024/02/13 12:34:09 by lburkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,10 @@ CFILES =	push_swap.c \
 			check_valid.c \
 			error_handling.c \
 			sort_stack.c \
-			stack_utils.c
-			
+			stack_utils.c \
+			rotate.c \
+			rev_rotate.c \
+			swap.c
 
 CFLAGS = -Wall -Wextra -Werror
 

@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:20:36 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/12 15:56:07 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:21:59 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,18 @@ int	check_sorted(t_node	*stack)
 	return (1);
 }
 
-/*void	sort_three(char	**stack)
+void	sort_three(t_node	**a)
 {
-	int	temp;
+	t_node	*highest;
 
-	t_node	*current_ptr;
-	t_node	*next_ptr;
-
-	current_ptr = stack;
-	next_ptr = current_ptr->next;
-	if (current_ptr->num > next_ptr->num)
-	{
-		temp = current_ptr->num;
-		current_ptr = next_ptr;
-		next_ptr->num = temp;
-	}
-}*/
+	highest = find_max(*a);
+	if (highest == *a)
+		ra(a, 0);//not sure about 0/1 value here for print. why is it necessary? found on thuggonaut.
+	else if ((*a)->next == highest)
+		rra(a, 0);
+	if ((*a)->num > (*a)->next->num)
+		sa(a, 0);
+}
 
 void	sort_stack(t_node	**stack)//could return int 1/0 to indicate success/error?
 {
@@ -80,6 +76,6 @@ void	sort_stack(t_node	**stack)//could return int 1/0 to indicate success/error?
 	}
 	find_max(*stack);
 	find_min(*stack);
-	/*if (count == 3)
-		sort_three(&stack);*/
+	if (count == 3)
+		sort_three(stack);
 }

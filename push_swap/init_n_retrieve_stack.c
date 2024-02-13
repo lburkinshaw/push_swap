@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:17:53 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/12 13:59:40 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/13 10:46:04 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,6 @@ void	retrieve_stack(t_node *stack)
 		ft_printf("%d\n", ptr->num);
 		ptr = ptr->next;
 	}
-}
-
-t_node	*find_last_node(t_node *lst)
-{
-	t_node	*ptr;
-
-	if (lst == NULL)
-		return (NULL);
-	ptr = lst;
-	while (ptr->next != NULL)
-		ptr = ptr->next;
-	return (ptr);
 }
 
 void	add_args_to_stack(char **arguments, t_node **stack)
