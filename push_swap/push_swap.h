@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:16:40 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/13 12:36:16 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:32:33 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		check_repeat_stack(t_node *stack);
 int		check_sorted(t_node	*stack);
 void	sort_stack(t_node	**stack);
 void	sort_three(t_node	**a);
+void	sort_more(t_node	**a);
 t_node	*find_max(t_node *stack);
 t_node	*find_min(t_node *stack);
 int		count_nums(t_node	*stack);

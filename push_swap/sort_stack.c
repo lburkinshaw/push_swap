@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:20:36 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/13 13:21:59 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:50:17 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,42 @@ void	sort_three(t_node	**a)
 	if ((*a)->num > (*a)->next->num)
 		sa(a, 0);
 }
+/*
+void	sort_more(t_node	**a)
+{
+	t_node	*highest;
+	t_node	*b;
+	t_node	*new_top;
+
+	b = NULL;
+	while (count_nums(*a) > 3 && !check_sorted(a))
+	{
+		pb(a, b, 0);
+		// highest = find_max(*a);
+		// if (highest == *a)
+		// 	new_top = (*a)->next;
+		// else
+		// 	new_top = *a;
+		// highest->next = b;
+		// b = highest;
+		// *a = new_top;
+	}
+	sort_three(a);
+	retrieve_b(a, &b);
+}*/
+
+void retrieve_b(t_node **a, t_node ** b)
+{
+	t_node *b_last;
+	t_node *b_pen;
+	
+	while ((*b)->next)
+	{
+		b_last = find_last(*b);
+		b_pen = find_penultimate(*b);
+		
+	}
+}
 
 void	sort_stack(t_node	**stack)//could return int 1/0 to indicate success/error?
 {
@@ -78,4 +114,6 @@ void	sort_stack(t_node	**stack)//could return int 1/0 to indicate success/error?
 	find_min(*stack);
 	if (count == 3)
 		sort_three(stack);
+	/*if (count > 3)
+		sort_more(stack);*/
 }
