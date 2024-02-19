@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 14:53:03 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/13 10:46:20 by lburkins         ###   ########.fr       */
+/*   Created: 2024/02/16 11:41:28 by lburkins          #+#    #+#             */
+/*   Updated: 2024/02/16 14:35:35 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,23 @@ t_node	*find_last_node(t_node *lst)
 	while (ptr->next != NULL)
 		ptr = ptr->next;
 	return (ptr);
+}
+
+int	count_nodes(t_node *lst)
+{
+	int		count;
+	t_node	*ptr;
+
+	if (lst == NULL)
+		return (0);
+	count = 0;
+	ptr = lst;
+	while (ptr != NULL)
+	{
+		ptr = ptr->next;
+		count++;
+	}
+	return (count);
 }
 
 t_node	*find_max(t_node *stack)
@@ -70,10 +87,3 @@ t_node	*find_min(t_node *stack)
 	ft_printf("min value is: %d\n", min_node->num);
 	return (min_node);
 }
-
-//find_max
-//find_min
-
-//Move here:
-	//--find_last 
-	//--check sorted

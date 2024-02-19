@@ -5,47 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 13:18:31 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/12 14:19:26 by lburkins         ###   ########.fr       */
+/*   Created: 2024/02/16 10:11:47 by lburkins          #+#    #+#             */
+/*   Updated: 2024/02/19 11:22:26 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-Make work for 3 numbers:
-./push_swap 2 5 1
-./push_swap "2 5 1"
-
-Steps:
-- Create stack, -ok
-- Add each no. to stack -ok
-- Retrieve stack -ok
-
-ERROR CHECKS:
-- If repeat, don't put on list (print error or just omit??)
-- If more than 11 characters
-- check if outside max/min int
---> print error message or initiate stackk
-
-
--- rotate stack a
--- swap stack a
-*/
-
 #include "push_swap.h"
+
+void	retrieve_stack(t_node *stack)//DELETE BEFORE SUBMIT
+{
+	t_node	*ptr;
+
+	if (stack == NULL)
+		return ;
+	ptr = stack;
+	while (ptr)
+	{
+		ft_printf("%d\n", ptr->num);
+		ptr = ptr->next;
+	}
+}
 
 int	main(int argc, char *argv[])
 {
-	t_node		*stack;
+	t_node	*a;
+	t_node	*b;
 
-	stack = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0])) //Check for incorrect argument counts or if the 2nd argument is `0`
+	a = NULL;
+	b = NULL;
+	if (argc == 1 || (argc == 2 && argv[1][0] == '\0'))
 		return (1);
-	if (initiate_stack_a(argc, argv, &stack) == 1) //Checks that more than one number
-		return (1);//do i  need to print error message?
-	sort_stack(&stack);
-	//else if more than 3 args...
-	//stack B: only reassign nodes from stack a. No need to malloc new nodes.
-	retrieve_stack(stack);
-	free_stack(&stack, 0);
+	initiate_a(argc, argv, &a);
+	sort_stack(&a, &b);
+	retrieve_stack(a);
+	free_stack(&a, 0);
 	return (0);
 }

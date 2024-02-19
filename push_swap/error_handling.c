@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 14:27:17 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/12 09:48:15 by lburkins         ###   ########.fr       */
+/*   Created: 2024/02/16 11:02:37 by lburkins          #+#    #+#             */
+/*   Updated: 2024/02/19 11:59:49 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	error_n_exit(void)
 {
-	ft_printf("error\n");
+	ft_printf("Error\n");
 	exit (1);
 }
 
@@ -28,23 +28,23 @@ void	free_split(char **array)
 		free(array[i]);
 		i++;
 	}
-	free(array);//is this correct &/or necessary??
+	free(array);
 }
 
-void	free_stack(t_node **stack, int error)
+void	free_stack(t_node **stack, int error) //check this
 {
 	t_node	*current;
-	t_node	*previous;
+	t_node	*next;
 
 	if (!stack)
 		return ;
 	current = *stack;
-	previous = *stack;
-	while (current->next)
+	next = NULL;
+	while (current)
 	{
-		current = current->next;
-		free(previous);
-		previous = current;
+		next = current->next;
+		free(current);
+		current = next;
 	}
 	*stack = NULL;
 	if (error)
