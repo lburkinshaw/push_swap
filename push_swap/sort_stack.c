@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:57:10 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/16 15:03:43 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:00:26 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ void	sort_stack(t_node **a, t_node **b)
 {
 	(void)b;
 	if (count_nodes(*a) == 0)
-		exit(1);//print error?
+	{
+		free_stack(a);
+		error_n_exit(NULL, 0);//do i need to print error?
+	}
 	if (check_sorted(*a) == 1)
 		exit(1);
 	if (count_nodes(*a) == 2)

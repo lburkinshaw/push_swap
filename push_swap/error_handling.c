@@ -6,14 +6,16 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:02:37 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/19 11:59:49 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:25:18 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error_n_exit(void)
+void	error_n_exit(char **arguments, int split_flag)
 {
+	if (split_flag)
+		free_split(arguments);
 	ft_printf("Error\n");
 	exit (1);
 }
@@ -31,7 +33,7 @@ void	free_split(char **array)
 	free(array);
 }
 
-void	free_stack(t_node **stack, int error) //check this
+void	free_stack(t_node **stack)
 {
 	t_node	*current;
 	t_node	*next;
@@ -47,6 +49,13 @@ void	free_stack(t_node **stack, int error) //check this
 		current = next;
 	}
 	*stack = NULL;
-	if (error)
-		error_n_exit();
 }
+
+/*void	error_sort(t_node **stack, char **split, int split_flag)
+{
+	if (split != NULL && split_flag)
+		free_split(split);
+	if (stack != NULL)
+		free(stack);
+	error_n_exit();
+}*/

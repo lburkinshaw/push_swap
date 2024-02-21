@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 10:11:47 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/19 11:22:26 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:40:29 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	retrieve_stack(t_node *stack)//DELETE BEFORE SUBMIT
 	t_node	*ptr;
 
 	if (stack == NULL)
+	{
+		write(1, "Error", 5);
 		return ;
+	}
 	ptr = stack;
 	while (ptr)
 	{
@@ -34,10 +37,10 @@ int	main(int argc, char *argv[])
 	a = NULL;
 	b = NULL;
 	if (argc == 1 || (argc == 2 && argv[1][0] == '\0'))
-		return (1);
+		error_n_exit(argv, 0);
 	initiate_a(argc, argv, &a);
 	sort_stack(&a, &b);
 	retrieve_stack(a);
-	free_stack(&a, 0);
+	free_stack(&a);
 	return (0);
 }
