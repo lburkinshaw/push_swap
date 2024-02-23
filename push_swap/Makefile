@@ -6,23 +6,29 @@
 #    By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 12:00:18 by lburkins          #+#    #+#              #
-#    Updated: 2024/02/16 14:33:53 by lburkins         ###   ########.fr        #
+#    Updated: 2024/02/23 13:21:54 by lburkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 CFILES =	push_swap.c \
-			initiate_a.c \
+			create_a.c \
 			sort_stack.c \
+			stack_utils.c \
+			check_valid.c \
+			error_handling.c \
 			rotate.c \
 			rev_rotate.c \
 			swap.c \
-			check_valid.c \
-			error_handling.c \
-			stack_utils.c
+			push.c \
+			move.c \
+			init_nodes_a.c \
+			init_nodes_b.c \
+			radix_exp.c
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
+#Delete -g flag before eval
 
 LIBFT = libft/libft.a
 

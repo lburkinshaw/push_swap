@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:39:43 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/20 14:53:05 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:09:11 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,20 @@ void	rb(t_node **b, int print)//rotate top node in B to bottom of stack and prin
 	rotate(b);
 	if (!print)
 		ft_printf("rb\n");
+}
+
+void	rr(t_node **a, t_node **b, int print)
+{
+	rotate(a);
+	rotate(b);
+	if (!print)
+		ft_printf("rr\n");
+}
+
+void	rotate_both(t_node **a, t_node **b, t_node *cheapest)
+{
+	while (*a != cheapest && *b != cheapest->target_node)//makes sure cheapest nodes aren't already at the top, and rotates both untl one of the cheapest  nodes is
+		rr(a, b, 0);
+	current_index(*a);//refresh indexes after operation.
+	current_index(*b);
 }

@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:57:10 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/20 15:00:26 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:03:48 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,9 @@ int	check_sorted(t_node *stack)
 	while (current_node->next != NULL)
 	{
 		if (current_node->num > current_node->next->num)
-		{
-			ft_printf("not sorted\n");
 			return (0);
-		}
 		current_node = current_node->next;
 	}
-	ft_printf("sorted\n");
 	return (1);
 }
 
@@ -45,14 +41,39 @@ void	sort_three(t_node **stack)
 		sa(stack, 0);
 }
 
-/*void	sort_more(t_node **a, t_node **b)
+void	sort_more(t_node **a, t_node **b)
 {
+	int	len_a;
 
-}*/
+	len_a = count_nodes(*a);
+	if (len_a-- > 3 && !check_sorted(*a))
+		pb(b, a, 0);
+	if (len_a-- > 3 && !check_sorted(*a))
+		pb(b, a, 0);
+	while (len_a > 3)
+	{
+		init_nodes_a(a, b);
+		move_a_to_b(a, b);
+	}
+	sort_three(a);
+	printf("stack A:\n");
+	retrieve_stack(*a);//remove
+	printf("stack B:\n");//remove
+	retrieve_stack(*b);//remove
+	printf("number of nodes in B: %d\n", count_nodes(*b));//remove
+	while (*b)
+	{
+		init_nodes_b(a, b);
+		printf("B num: %d\n", (*b)->num);
+		//printf("B target: %d\n", (*b)->target_node->num); // doesnt seem to have assigned target
+		move_b_to_a(a, b);
+	}
+	current_index(*a);
+	put_min_ontop(a);
+}
 
 void	sort_stack(t_node **a, t_node **b)
 {
-	(void)b;
 	if (count_nodes(*a) == 0)
 	{
 		free_stack(a);
@@ -64,6 +85,7 @@ void	sort_stack(t_node **a, t_node **b)
 		sa(a, 0);
 	if (count_nodes(*a) == 3)
 		sort_three(a);
-	/*else
-		sort_more(a, b);*/
+	else
+		//radix_sort(a, b);
+		sort_more(a, b);
 }

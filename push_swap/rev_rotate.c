@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:11:22 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/16 14:16:59 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:09:49 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,20 @@ void	rrb(t_node **b, int print)
 	rev_rotate(b);
 	if (!print)
 		ft_printf("rrb\n");
+}
+
+void	rrr(t_node **a, t_node **b, int print)
+{
+	rev_rotate(a);
+	rev_rotate(b);
+	if (!print)
+		ft_printf("rrr\n");
+}
+
+void	rev_rotate_both(t_node **a, t_node **b, t_node *cheapest)
+{
+	while (*a != cheapest && *b != cheapest->target_node)
+		rrr(a, b, 0);
+	current_index(*a);//refresh indexes after operation.
+	current_index(*b);
 }

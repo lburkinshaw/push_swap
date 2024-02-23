@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:41:28 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/16 14:35:35 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:38:28 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,19 @@ int	count_nodes(t_node *lst)
 	int		count;
 	t_node	*ptr;
 
-	if (lst == NULL)
+	if (!lst)
 		return (0);
 	count = 0;
 	ptr = lst;
-	while (ptr != NULL)
+	while (ptr)
 	{
 		ptr = ptr->next;
 		count++;
 	}
+	/*printf("No. of nodes: %d\n", count);
+	printf("list start\n");
+	retrieve_stack(lst);
+	printf("list end\n");*/ //COUNT FUNCTION SEEMS TO WORK CORRECTLY.
 	return (count);
 }
 
@@ -60,7 +64,6 @@ t_node	*find_max(t_node *stack)
 		}
 		current_node = current_node->next;
 	}
-	ft_printf("max value is: %d\n", max_node->num);
 	return (max_node);
 }
 
