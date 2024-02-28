@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:18:14 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/27 15:28:37 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:21:23 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_node	*find_cheapest(t_node *stack)
 		error_n_exit(NULL, 0);
 	while (curr)
 	{
-		if (curr->cheapest == 0)
+		if (curr->cheapest == 1)//THIS WAS MY LAST BIG ISSUE!! THIS WAS SET AT 0, NOT CHEAPEST
 		{
 			cheapest = curr;
 			break;
