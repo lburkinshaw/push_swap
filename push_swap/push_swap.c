@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 10:11:47 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/23 13:24:38 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:49:53 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char *argv[])
 	argv[3] = "2";
 	argv[4] = "3";
 	argv[5] = NULL;*/
-//above lined 37-42 can be used for debugger. ALternatively launch.json file can specify.
+//above lines 37-42 can be used for debugger. ALternatively launch.json file can specify.
 
 	a = NULL;
 	b = NULL;
@@ -48,7 +48,7 @@ int	main(int argc, char *argv[])
 		error_n_exit(argv, 0);
 	create_a(argc, argv, &a);
 	sort_stack(&a, &b);
-	retrieve_stack(a);
+	//retrieve_stack(a);
 	free_stack(&a);
 	return (0);
 }

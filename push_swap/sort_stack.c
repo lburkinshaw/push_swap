@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:57:10 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/23 15:03:48 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:14:29 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,30 @@ void	sort_more(t_node **a, t_node **b)
 	int	len_a;
 
 	len_a = count_nodes(*a);
+	//printf("stack A len: %d\n", len_a);
 	if (len_a-- > 3 && !check_sorted(*a))
 		pb(b, a, 0);
 	if (len_a-- > 3 && !check_sorted(*a))
 		pb(b, a, 0);
-	while (len_a > 3)
+	while (len_a-- > 3 && !check_sorted(*a))
 	{
 		init_nodes_a(a, b);
 		move_a_to_b(a, b);
 	}
+	/*while (len_a-- > 3  && !check_sorted(*a))//the above segfaults when more than 5 values (i.e. when enters while loop). This way nums are sorted but may be less efficient than if i correct above code..
+		pb(b, a, 0);*/
 	sort_three(a);
-	printf("stack A:\n");
-	retrieve_stack(*a);//remove
-	printf("stack B:\n");//remove
-	retrieve_stack(*b);//remove
-	printf("number of nodes in B: %d\n", count_nodes(*b));//remove
+	//printf("stack A:\n");
+	//retrieve_stack(*a);//remove
+	//printf("stack B:\n");//remove
+	//retrieve_stack(*b);//remove
 	while (*b)
 	{
 		init_nodes_b(a, b);
-		printf("B num: %d\n", (*b)->num);
-		//printf("B target: %d\n", (*b)->target_node->num); // doesnt seem to have assigned target
 		move_b_to_a(a, b);
 	}
+	//printf("stack A b4 min on top:\n");//remove
+	//retrieve_stack(*a);//remove
 	current_index(*a);
 	put_min_ontop(a);
 }

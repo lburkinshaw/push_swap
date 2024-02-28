@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:16:49 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/23 14:31:19 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:20:54 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	current_index(t_node *stack)
 	median = count_nodes(temp) / 2;
 	if (!temp)
 		return ;
+	/*if (median == 0)
+	{
+		temp->index = 0;
+		temp
+	}*/
 	while (temp)
 	{
 		temp->index = i;
@@ -31,23 +36,27 @@ void	current_index(t_node *stack)
 		else
 			temp->above_median = 0;
 		i++;
+		if (!temp->next)
+			return ;
 		temp = temp->next;
 	}
 }
 
 void	set_target_a(t_node **a, t_node **b)
 {
+	t_node	*curr_a;
 	t_node	*curr_b;
 	t_node	*target_node;
 	long	best_match;
 
-	while (*a)
+	curr_a = *a;
+	while (curr_a)
 	{
 		best_match = LONG_MIN;
 		curr_b = *b;
 		while (curr_b)
 		{
-			if ((curr_b->num < (*a)->num) && curr_b->num > best_match)//if num in b is less than a and greater than best match (thus closer to a)
+			if ((curr_b->num < curr_a->num) && curr_b->num > best_match)//if num in b is less than a and greater than best match (thus closer to a)
 			{
 				best_match = curr_b->num;//save num as best match (long)
 				target_node = curr_b;//set node as temp target
@@ -55,10 +64,10 @@ void	set_target_a(t_node **a, t_node **b)
 			curr_b = curr_b->next;//iterate through all nodes in b
 		}
 		if (best_match == LONG_MIN)//therefore no smaller number found in b
-			(*a)->target_node = find_max(*b);//set temp target as highest num in b, completing 'circle'.
+			curr_a->target_node = find_max(*b);//set temp target as highest num in b, completing 'circle'.
 		else
-			(*a)->target_node = target_node;//if best match found (and saved as target), set a's target node as tempp target
-		*a = (*a)->next;//iterate through all nodes in a
+			curr_a->target_node = target_node;//if best match found (and saved as target), set a's target node as tempp target
+		curr_a = curr_a->next;//iterate through all nodes in a
 	}
 }
 
@@ -87,7 +96,6 @@ void	set_cheapest(t_node **stack)
 	t_node	*cheapest_node;
 	t_node	*current;
 
-	printf ("%d\n", (*stack)->num);
 	if (!stack)
 		error_n_exit(NULL, 0);
 	current = *stack;
@@ -101,7 +109,6 @@ void	set_cheapest(t_node **stack)
 		}
 		current = current->next;
 	}
-	printf("%d\n", cheapest_node->cheapest);
 	cheapest_node->cheapest = 1;
 }
 

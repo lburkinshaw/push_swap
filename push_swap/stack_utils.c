@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:41:28 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/23 14:38:28 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:46:05 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,6 @@ int	count_nodes(t_node *lst)
 		ptr = ptr->next;
 		count++;
 	}
-	/*printf("No. of nodes: %d\n", count);
-	printf("list start\n");
-	retrieve_stack(lst);
-	printf("list end\n");*/ //COUNT FUNCTION SEEMS TO WORK CORRECTLY.
 	return (count);
 }
 
@@ -87,6 +83,5 @@ t_node	*find_min(t_node *stack)
 		}
 		current_node = current_node->next;
 	}
-	ft_printf("min value is: %d\n", min_node->num);
 	return (min_node);
 }

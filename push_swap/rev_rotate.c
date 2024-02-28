@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:11:22 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/22 16:09:49 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:08:25 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,29 @@
 
 void	rev_rotate(t_node **stack)
 {
-	t_node	*last_node;
+	/*t_node	*last_node;
 	t_node	*new_bottom;
 
-	if (!stack || !(*stack) || !(*stack)->next)
+	if (!*stack || !(*stack)->next)
 		return ;
 	last_node = find_last_node(*stack);
 	new_bottom = last_node->prev;
-	last_node->next = *stack;
-	(*stack)->prev = last_node;
-	*stack = last_node;
 	new_bottom->next = NULL;
+	last_node->next = *stack;
+	last_node->prev = NULL;
+	*stack = last_node;
+	if (last_node->next != NULL)
+		last_node->next->prev = NULL;*/
+	t_node	*last_node; //To store the pointer to the last node
+
+	if (!*stack || !(*stack)->next) //Check if the stack is empty, or if there's one node
+		return ;
+	last_node = find_last_node(*stack);
+	last_node->prev->next = NULL; //Assign to the `next` attribute of the node before itself, `NULL` effectively setting it as the current last node
+	last_node->next = *stack; //Assign to its own `next` attribute as the top node of the stack
+	last_node->prev = NULL; //Detach itself from the node before it
+	*stack = last_node;  //Complete appending itself to the top of the stack, and now holds the pointer to the top node
+	last_node->next->prev = last_node; //Update the current last node of the stack
 }
 
 void	rra(t_node **a, int print)

@@ -6,7 +6,7 @@
 #    By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:26:43 by lburkins          #+#    #+#              #
-#    Updated: 2024/02/08 10:51:44 by lburkins         ###   ########.fr        #
+#    Updated: 2024/02/13 11:58:38 by lburkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,8 +70,7 @@ all: $(NAME)
 
 $(NAME): $(OFILES)
 	ar rcs $(NAME) $(OFILES) 
-
-
+ 
 clean:
 	rm -f $(OFILES)
 

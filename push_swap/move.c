@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:18:14 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/22 16:15:52 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:28:37 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,23 @@
 
 t_node	*find_cheapest(t_node *stack)
 {
+	t_node	*cheapest;
+	t_node	*curr;
+	
+	cheapest = NULL;
+	curr = stack;
 	if (!stack)
 		error_n_exit(NULL, 0);
-	while (stack)
+	while (curr)
 	{
-		if (stack->cheapest == 0)
-			stack = stack->next;
+		if (curr->cheapest == 0)
+		{
+			cheapest = curr;
+			break;
+		}
+		curr = curr->next;
 	}
-	return (stack);
+	return (cheapest);
 }
 
 void	move_to_top(t_node **stack, t_node *top, char stack_name)
