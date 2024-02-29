@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:02:37 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/19 14:25:18 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/29 10:31:41 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	error_n_exit(char **arguments, int split_flag)
 {
 	if (split_flag)
 		free_split(arguments);
-	ft_printf("Error\n");
+	write(2, "Error\n", 6);
 	exit (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 10:30:58 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/19 14:46:45 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/29 10:24:56 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ int	check_digit(char *str)
 
 	i = 0;
 	if (str[0] == '-' || str[0] == '+')
+	{
 		i++;
+		if (str[i] < 48 || str[i] > 57)
+			return (1);
+	}
 	while (str[i])
 	{
 		if (str[i] < 48 || str[i] > 57)

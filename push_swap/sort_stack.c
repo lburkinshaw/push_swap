@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:57:10 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/27 15:14:29 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:07:01 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,30 @@ void	sort_more(t_node **a, t_node **b)
 	put_min_ontop(a);
 }
 
+void	handle_five(t_node **a, t_node **b)
+{
+	t_node	*min_node;
+
+	while (count_nodes(*a) > 3)
+	{
+		min_node = find_min(*a);
+		//ft_printf("%d\n", min_node->num);
+		current_index(*a);
+		move_to_top(a, min_node, 'a');
+		pb(b, a, 0);//problem seems to be here, looping on one
+		//retrieve_stack(*b);
+	}
+	sort_three(a);
+	pa(a, b, 0);
+	pa(a, b, 0);
+	/*while (*b)
+	{
+		init_nodes_b(a, b);
+		move_b_to_a(a, b);
+	}
+	put_min_ontop(a);*/
+}
+
 void	sort_stack(t_node **a, t_node **b)
 {
 	if (count_nodes(*a) == 0)
@@ -87,6 +111,8 @@ void	sort_stack(t_node **a, t_node **b)
 		sa(a, 0);
 	if (count_nodes(*a) == 3)
 		sort_three(a);
+	if (count_nodes(*a) == 5)
+		handle_five(a, b);
 	else
 		//radix_sort(a, b);
 		sort_more(a, b);
