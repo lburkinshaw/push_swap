@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:02:37 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/29 10:31:41 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:55:20 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,3 @@ void	free_stack(t_node **stack)
 	*stack = NULL;
 }
 
-/*void	error_sort(t_node **stack, char **split, int split_flag)
-{
-	if (split != NULL && split_flag)
-		free_split(split);
-	if (stack != NULL)
-		free(stack);
-	error_n_exit();
-}*/

@@ -6,7 +6,7 @@
 #    By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 12:00:18 by lburkins          #+#    #+#              #
-#    Updated: 2024/02/23 13:21:54 by lburkins         ###   ########.fr        #
+#    Updated: 2024/02/29 12:16:18 by lburkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,10 @@ CFILES =	push_swap.c \
 			push.c \
 			move.c \
 			init_nodes_a.c \
-			init_nodes_b.c \
-			radix_exp.c
+			init_nodes_b.c
 
 CFLAGS = -Wall -Wextra -Werror -g
-#Delete -g flag before eval
+############# Delete -g flag before eval!! ###########
 
 LIBFT = libft/libft.a
 

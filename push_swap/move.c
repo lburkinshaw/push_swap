@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:18:14 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/28 11:21:23 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:54:32 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ void	move_to_top(t_node **stack, t_node *top, char stack_name)
 		if (stack_name == 'a')
 		{
 			if (top->above_median)
-				ra(stack, 0);
+				ra(stack);
 			else
-				rra(stack, 0);
+				rra(stack);
 		}
 		if (stack_name == 'b')
 		{
 			if (top->above_median)
-				rb(stack, 0);
+				rb(stack);
 			else
-				rrb(stack, 0);
+				rrb(stack);
 		}
 	}
 }
@@ -65,13 +65,13 @@ void	move_a_to_b(t_node **a, t_node **b)
 		rev_rotate_both(a, b, cheapest_node);
 	move_to_top(a, cheapest_node, 'a');
 	move_to_top(b, cheapest_node->target_node, 'b');
-	pb(b, a, 0);
+	pb(b, a);
 }
 
 void	move_b_to_a(t_node **a, t_node **b)//this is simpler because only needs to rotate B's target node in a to top and push B to A.
 {
 	move_to_top(a, (*b)->target_node, 'a');
-	pa(a, b, 0);
+	pa(a, b);
 }
 
 void	put_min_ontop(t_node **stack)
@@ -83,8 +83,8 @@ void	put_min_ontop(t_node **stack)
 	while (*stack != min)
 	{
 		if (min->above_median)
-			ra(stack, 0);
+			ra(stack);
 		else
-			rra(stack, 0);
+			rra(stack);
 	}
 }

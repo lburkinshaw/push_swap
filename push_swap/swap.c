@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:24:44 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/27 13:29:30 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:53:21 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,14 @@ void	swap(t_node	**stack)
     *stack = new_top;
 }
 
-void	sa(t_node **a, int print)
+void	sa(t_node **a)
 {
 	swap(a);
-	if (!print)
-		ft_printf("sa\n");
+	ft_printf("sa\n");
 }
 
-void	sb(t_node **b, int print)
+void	sb(t_node **b)
 {
 	swap(b);
-	if (!print)
-		ft_printf("sb\n");
+	ft_printf("sb\n");
 }

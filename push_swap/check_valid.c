@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 10:30:58 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/29 10:24:56 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:22:32 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_dups(char **array)
 	return (0);
 }
 
-int	check_empty(char *str)// should the case of ./push_swap "" also return "Error"??
+int	check_empty(char *str)
 {
 	if (*str == '\0')
 		return (1);
@@ -61,27 +61,6 @@ int	check_digit(char *str)
 	return (0);
 }
 
-/*int	check_dups_stack(t_node *stack)
-{
-	t_node	*current_ptr;
-	t_node	*nxt_ptr;
-
-	if (stack == NULL)
-		return (1);
-	current_ptr = stack;
-	nxt_ptr = current_ptr->next;
-	while (current_ptr->next)
-	{
-		while (nxt_ptr && current_ptr->num != nxt_ptr->num)//need to check for next_ptr before trying to access
-			nxt_ptr = nxt_ptr->next;
-		if (nxt_ptr && current_ptr->num == nxt_ptr->num)//need to check for next_ptr before trying to access
-			return (1);
-		current_ptr = current_ptr->next;
-		if (current_ptr)
-			nxt_ptr = current_ptr->next;
-	}
-	return (0);
-}*/
 
 void	check_valid(char **args, int split_flag)
 {

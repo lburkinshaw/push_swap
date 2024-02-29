@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initiate_a.c                                       :+:      :+:    :+:   */
+/*   create_a.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 10:19:14 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/22 11:16:01 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:54:59 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	append_num(int nb, t_node **stack)
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 	{
-		free_stack(stack);//should i print error message?
+		free_stack(stack);
 		return (1);
 	}
 	new_node->next = NULL;

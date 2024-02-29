@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:03:33 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/26 14:48:50 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:52:11 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,14 @@ void	push(t_node **dst, t_node **src)
 	}
 }
 
-void	pa(t_node **a, t_node **b, int print)
+void	pa(t_node **a, t_node **b)
 {
 	push(a, b);
-	if (!print)
-		ft_printf("pa\n");
+	ft_printf("pa\n");
 }
 
-void	pb(t_node **b, t_node **a, int print)
+void	pb(t_node **b, t_node **a)
 {
 	push(b, a);
-	if (!print)
-		ft_printf("pb\n");
+	ft_printf("pb\n");
 }

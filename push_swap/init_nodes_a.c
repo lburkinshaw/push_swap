@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:16:49 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/28 11:08:28 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:55:32 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@ void	current_index(t_node *stack)
 	median = count_nodes(temp) / 2;
 	if (!temp)
 		return ;
-	/*if (median == 0)
-	{
-		temp->index = 0;
-		temp
-	}*/
 	while (temp)
 	{
 		temp->index = i;
@@ -75,7 +70,7 @@ void	cost_analysis_a(t_node **a, t_node **b)
 {
 	int	len_a;
 	int	len_b;
-	t_node	*curr_a;//by adding this i seem to have pushed back the segfault to after pushing all nodes to B!
+	t_node	*curr_a;
 
 	len_a = count_nodes(*a);
 	len_b = count_nodes(*b);

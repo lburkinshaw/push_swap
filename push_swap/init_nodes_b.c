@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:02:19 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/27 13:49:32 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:17:52 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,9 @@ void	set_target_b(t_node **a, t_node **b)
 	}
 }
 
-/*void	cost_analysis_b(t_node **a, t_node **b)
-{
-	int	len_a;
-	int	len_b;
-
-	len_a = count_nodes(*a);
-	len_b = count_nodes(*b);
-	while (*b)
-	{
-		(*b)->push_cost = (*b)->index;
-		if ((*b)->above_median == 0)//if a node is below median, subtract index from length (otherwise push_cost remains its index)
-			(*b)->push_cost = len_b - (*b)->index;
-		if ((*b)->target_node->above_median == 1)//if target in b is above median, add its index to push_cost
-			((*b)->push_cost = (*b)->push_cost + (*b)->target_node->index);
-		else// if a target is below median
-			((*b)->push_cost = (*b)->push_cost + (len_a - (*b)->target_node->index));
-		*b = (*b)->next;
-	}
-}*/
-
 void	init_nodes_b(t_node **a, t_node **b)
 {
 	current_index(*a);
 	current_index(*b);
 	set_target_b(a, b);
-	/*cost_analysis_b(a, b);
-	set_cheapest(a);*/
 }
