@@ -6,13 +6,13 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:03:33 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/29 14:52:11 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:23:03 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_node **dst, t_node **src)
+static void	push(t_node **dst, t_node **src)
 {
 	t_node	*push_node;
 

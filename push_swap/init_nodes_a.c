@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:16:49 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/29 15:55:32 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:24:42 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	current_index(t_node *stack)
 	}
 }
 
-void	set_target_a(t_node **a, t_node **b)
+static void	set_target_a(t_node **a, t_node **b)
 {
 	t_node	*curr_a;
 	t_node	*curr_b;
@@ -66,7 +66,7 @@ void	set_target_a(t_node **a, t_node **b)
 	}
 }
 
-void	cost_analysis_a(t_node **a, t_node **b)
+static void	cost_analysis_a(t_node **a, t_node **b)
 {
 	int	len_a;
 	int	len_b;
@@ -87,7 +87,8 @@ void	cost_analysis_a(t_node **a, t_node **b)
 		curr_a = curr_a->next;
 	}
 }
-void	set_cheapest(t_node **stack)
+
+static void	set_cheapest(t_node **stack)
 {
 	long	cheapest_num;
 	t_node	*cheapest_node;

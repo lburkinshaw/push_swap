@@ -6,13 +6,13 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:39:43 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/29 14:56:23 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:21:53 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate(t_node **stack)
+static void	rotate(t_node **stack)
 {
 	t_node	*last_node;
 	t_node	*new_top;

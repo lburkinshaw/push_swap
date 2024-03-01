@@ -6,13 +6,13 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:02:19 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/29 12:17:52 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:25:34 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	set_target_b(t_node **a, t_node **b)
+static void	set_target_b(t_node **a, t_node **b)
 {
 	t_node	*curr_a;
 	t_node	*curr_b;
@@ -37,8 +37,6 @@ void	set_target_b(t_node **a, t_node **b)
 			curr_b->target_node = find_min(*a);//set temp target as highest num in a, completing 'circle'.
 		else
 			curr_b->target_node = target_node;//if best match found (and saved as target), set b's target node as tempp target
-		if (!curr_b->next)
-			return ;
 		curr_b = curr_b->next;//iterate through all nodes in b
 	}
 }

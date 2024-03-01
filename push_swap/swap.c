@@ -6,13 +6,13 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:24:44 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/29 14:53:21 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:22:39 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_node	**stack)
+static void	swap(t_node	**stack)
 {
     if (!stack || !(*stack)->next)
         return;

@@ -6,13 +6,13 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:57:10 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/29 14:57:24 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:20:21 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_sorted(t_node *stack)
+static int	check_sorted(t_node *stack)
 {
 	t_node	*current_node;
 
@@ -28,7 +28,7 @@ int	check_sorted(t_node *stack)
 	return (1);
 }
 
-void	sort_three(t_node **stack)
+static void	sort_three(t_node **stack)
 {
 	t_node	*highest;
 
@@ -41,7 +41,7 @@ void	sort_three(t_node **stack)
 		sa(stack);
 }
 
-void	sort_more(t_node **a, t_node **b)
+static void	sort_more(t_node **a, t_node **b)
 {
 	int	len_a;
 
@@ -65,7 +65,7 @@ void	sort_more(t_node **a, t_node **b)
 	put_min_ontop(a);
 }
 
-void	handle_five(t_node **a, t_node **b)
+static void	sort_five(t_node **a, t_node **b)
 {
 	t_node	*min_node;
 
@@ -86,7 +86,7 @@ void	sort_stack(t_node **a, t_node **b)
 	if (count_nodes(*a) == 0)
 	{
 		free_stack(a);
-		error_n_exit(NULL, 0);//do i need to print error?
+		error_n_exit(NULL, 0);
 	}
 	if (check_sorted(*a) == 1)
 		exit(1);
@@ -95,7 +95,7 @@ void	sort_stack(t_node **a, t_node **b)
 	else if (count_nodes(*a) == 3)
 		sort_three(a);
 	else if (count_nodes(*a) == 5)
-		handle_five(a, b);
+		sort_five(a, b);
 	else
 		sort_more(a, b);
 }

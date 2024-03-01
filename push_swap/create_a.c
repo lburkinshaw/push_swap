@@ -6,13 +6,13 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 10:19:14 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/29 15:54:59 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:58:57 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	append_num(int nb, t_node **stack)
+static int	append_num(int nb, t_node **stack)
 {
 	t_node	*new_node;
 	t_node	*last_node;
@@ -39,7 +39,7 @@ int	append_num(int nb, t_node **stack)
 	return (0);
 }
 
-void	add_to_stack(char **arguments, t_node **stack, int split_flag)
+static void	add_to_stack(char **arguments, t_node **stack, int split_flag)
 {
 	int	i;
 	int	nb;
@@ -59,14 +59,11 @@ void	add_to_stack(char **arguments, t_node **stack, int split_flag)
 
 void	create_a(int ac, char *av[], t_node **stack)
 {
-	char	**arguments;
-	int		split_flag;
-	int		i;
+	char	**arguments;//create new array of strings for easier handling of args.
+	int		split_flag;//to indicate that split has been performed and needs to be freed.
 
-	arguments = NULL;
 	split_flag = 0;
-	i = 0;
-	if (ac == 2)
+	if (ac == 2)//if 2 args, we need to split string into array.
 	{
 		arguments = ft_split(av[1], ' ');
 		if (!arguments)
@@ -74,11 +71,11 @@ void	create_a(int ac, char *av[], t_node **stack)
 		split_flag = 1;
 	}
 	else
-		arguments = av + 1;
-	if (av[1] == NULL)
+		arguments = av + 1;//otherwise, set arguments to point to 1st value.
+	if (arguments[1] == NULL)//checks that more than one value to sort.
 		error_n_exit(arguments, split_flag);
-	check_valid(arguments, split_flag);
-	add_to_stack(arguments, stack, split_flag);
-	if (split_flag)
+	check_valid(arguments, split_flag);//checks for empty array, invalid characters & dups. If invalid, frees and exits.
+	add_to_stack(arguments, stack, split_flag);//adds to stack only if valid.
+	if (split_flag)//if split has been used, free here as no longer needed after added to stack.
 		free_split(arguments);
 }

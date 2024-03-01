@@ -6,27 +6,27 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:18:14 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/29 14:54:32 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:28:23 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*find_cheapest(t_node *stack)
+static t_node	*find_cheapest(t_node *stack)
 {
 	t_node	*cheapest;
 	t_node	*curr;
-	
+
 	cheapest = NULL;
 	curr = stack;
 	if (!stack)
 		error_n_exit(NULL, 0);
 	while (curr)
 	{
-		if (curr->cheapest == 1)//THIS WAS MY LAST BIG ISSUE!! THIS WAS SET AT 0, NOT CHEAPEST
+		if (curr->cheapest == 1)// 1 = cheapest.
 		{
 			cheapest = curr;
-			break;
+			break ;
 		}
 		curr = curr->next;
 	}
@@ -61,7 +61,8 @@ void	move_a_to_b(t_node **a, t_node **b)
 	cheapest_node = find_cheapest(*a);
 	if (cheapest_node->above_median && cheapest_node->target_node->above_median)//if both above median, rotate both until on of cheapest reches top/
 		rotate_both(a, b, cheapest_node);
-	else if (!(cheapest_node->above_median) && !(cheapest_node->target_node->above_median))//if both below media, rev rotate both.
+	else if (!(cheapest_node->above_median)
+		&& !(cheapest_node->target_node->above_median))//if both below median, rev rotate both.
 		rev_rotate_both(a, b, cheapest_node);
 	move_to_top(a, cheapest_node, 'a');
 	move_to_top(b, cheapest_node->target_node, 'b');
