@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 10:19:14 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/01 13:58:57 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/04 13:49:45 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@ static int	append_num(int nb, t_node **stack)
 	t_node	*new_node;
 	t_node	*last_node;
 
-	new_node = malloc(sizeof(t_node));
+	new_node = malloc(sizeof(t_node));//creates node to store nb as num value.
 	if (!new_node)
 	{
 		free_stack(stack);
 		return (1);
 	}
-	new_node->next = NULL;
-	new_node->num = nb;
-	if (*stack == NULL)
+	new_node->next = NULL;//sets next prt to NULL as end of stack.
+	new_node->num = nb;//stores nb
+	if (*stack == NULL)//if no other nodes in stack, sets stack to point to new_node.
 	{
 		*stack = new_node;
 		new_node->prev = NULL;
 	}
-	else
+	else//if other nodes already, finds last node in stack and appends new node to end.
 	{
 		last_node = find_last_node(*stack);
 		last_node->next = new_node;
 		new_node->prev = last_node;
 	}
-	return (0);
+	return (0);//returns 0 on success.
 }
 
 static void	add_to_stack(char **arguments, t_node **stack, int split_flag)
@@ -45,10 +45,10 @@ static void	add_to_stack(char **arguments, t_node **stack, int split_flag)
 	int	nb;
 
 	i = 0;
-	while (arguments[i])
+	while (arguments[i])//iterates through arguments array until end.
 	{
-		nb = ft_atoi(arguments[i]);
-		if (append_num(nb, stack) == 1)
+		nb = ft_atoi(arguments[i]);//uses atoi to convert (already checked validity) and store each arg string as int nb.
+		if (append_num(nb, stack) == 1)//appends nb as node at end of stack A. Checks function is sucessful, if not frees and exits.
 		{
 			free_stack(stack);
 			error_n_exit(arguments, split_flag);

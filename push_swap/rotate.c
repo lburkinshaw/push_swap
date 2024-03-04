@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:39:43 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/01 13:21:53 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/04 13:50:23 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static void	rotate(t_node **stack)
 	old_top->next = NULL;
 }
 
-void	ra(t_node **a)//rotate top node in A to bottom of stack and print instruction (if specified).
+void	ra(t_node **a)//rotate top node in A to bottom of stack and print instruction.
 {
 	rotate(a);
 	ft_printf("ra\n");
 }
 
-void	rb(t_node **b)//rotate top node in B to bottom of stack and print instruction (if specified).
+void	rb(t_node **b)//rotate top node in B to bottom of stack and print instruction.
 {
 	rotate(b);
 	ft_printf("rb\n");

@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:16:40 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/01 13:42:17 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/04 13:50:15 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ t_node	*find_min(t_node *stack);
 /********************/
 /** INIT_NODES_A.C **/
 /********************/
-void	init_nodes_a(t_node **a, t_node **b);
+void	init_nodes_a(t_node *a, t_node *b);
 void	current_index(t_node *stack);
 /********************/
 /** INIT_NODES_B.C **/
 /********************/
-void	init_nodes_b(t_node **a, t_node **b);
+void	init_nodes_b(t_node *a, t_node *b);
 
 /************/
 /** MOVE.C **/

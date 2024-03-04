@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:03:33 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/01 13:23:03 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/04 13:50:18 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ static void	push(t_node **dst, t_node **src)
 	else
 	{
 		push_node->next = *dst;
-		if (*dst)
-			push_node->next->prev = push_node;
+		push_node->next->prev = push_node;
 		*dst = push_node;
 	}
 }
