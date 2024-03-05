@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:16:49 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/05 12:14:01 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:45:34 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	current_index(t_node *stack)
 	while (curr)
 	{
 		curr->index = i;
-		if (curr->index < median)
+		if (curr->index <= median)
 			curr->above_median = 1;
 		else
 			curr->above_median = 0;
