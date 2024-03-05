@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:41:28 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/04 13:50:30 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:15:19 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ t_node	*find_min(t_node *stack)
 		return (NULL);
 	current_node = stack;
 	min = INT_MAX;
-
 	while (current_node)
 	{
 		if (current_node->num < min)

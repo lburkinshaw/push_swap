@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:02:37 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/04 13:49:50 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:06:38 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,3 @@ void	free_stack(t_node **stack)
 	}
 	*stack = NULL;
 }
-

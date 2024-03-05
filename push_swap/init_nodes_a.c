@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:16:49 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/04 13:49:54 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:14:01 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,28 @@ void	current_index(t_node *stack)
 {
 	int		median;
 	int		i;
-	t_node	*temp;
+	t_node	*curr;
 
 	i = 0;
-	temp = stack;
-	median = count_nodes(temp) / 2;
-	if (!temp)
+	curr = stack;
+	median = count_nodes(curr) / 2;
+	if (!curr)
 		return ;
-	while (temp)
+	while (curr)
 	{
-		temp->index = i;
-		if (temp->index < median)
-			temp->above_median = 1;
+		curr->index = i;
+		if (curr->index < median)
+			curr->above_median = 1;
 		else
-			temp->above_median = 0;
+			curr->above_median = 0;
 		i++;
-		if (!temp->next)
+		if (!curr->next)
 			return ;
-		temp = temp->next;
+		curr = curr->next;
 	}
 }
 
-static void	set_target_a(t_node *a, t_node *b)//sets target in B for each A node: closest lower value.
+static void	set_target_a(t_node *a, t_node *b)
 {
 	t_node	*curr_a;
 	t_node	*curr_b;
@@ -51,51 +51,55 @@ static void	set_target_a(t_node *a, t_node *b)//sets target in B for each A node
 		curr_b = b;
 		while (curr_b)
 		{
-			if ((curr_b->num < curr_a->num) && curr_b->num > best_match)//if num in B is less than A and greater than best match (thus closer to A)
+			if ((curr_b->num < curr_a->num) && curr_b->num > best_match)
 			{
-				best_match = curr_b->num;//save num as best match (long)
-				target_node = curr_b;//set node temporarily as target
+				best_match = curr_b->num;
+				target_node = curr_b;
 			}
-			curr_b = curr_b->next;//iterate through all nodes in B
+			curr_b = curr_b->next;
 		}
-		if (best_match == LONG_MIN)//therefore no smaller number found in B and A will be min value.
-			curr_a->target_node = find_max(b);//set temp target as highest num in B, completing 'circle'.
+		if (best_match == LONG_MIN)
+			curr_a->target_node = find_max(b);
 		else
-			curr_a->target_node = target_node;//if best match found (and saved as target), set A's target node as temporary target
-		curr_a = curr_a->next;//iterate through all nodes in A
-	}
-}
-
-static void	cost_analysis_a(t_node *a, t_node *b)//sets push_cost for each node in A.
-{
-	int		len_a;
-	int		len_b;
-	t_node	*curr_a;
-
-	len_a = count_nodes(a);
-	len_b = count_nodes(b);
-	curr_a = a;
-	while (curr_a)
-	{
-		curr_a->push_cost = curr_a->index;
-		if (curr_a->above_median == 0)//if A node is below median, subtract index from length (otherwise push_cost remains its index)
-			curr_a->push_cost = len_a - curr_a->index;
-		if (curr_a->target_node->above_median == 1)//if target in B is above median, add its index to push_cost
-			(curr_a->push_cost = curr_a->push_cost + curr_a->target_node->index);
-		else// if B target is below median, add B length - node index to push_cost.
-			(curr_a->push_cost = curr_a->push_cost + (len_b - curr_a->target_node->index));
+			curr_a->target_node = target_node;
 		curr_a = curr_a->next;
 	}
 }
 
-static void	set_cheapest(t_node *stack)//compares push_cost of nodes and sets 1 as cheapest.
+static void	cost_analysis(t_node *a, t_node *b)
+{
+	int		len_a;
+	int		len_b;
+	int		diff;
+	t_node	*curr_a;
+
+	len_a = count_nodes(a);
+	len_b = count_nodes(b);
+	diff = 0;
+	curr_a = a;
+	while (curr_a)
+	{
+		if (curr_a->above_median)
+			curr_a->push_cost = curr_a->index;
+		if (curr_a->above_median == 0)
+			curr_a->push_cost = len_a - curr_a->index;
+		if (curr_a->target_node->above_median)
+			(curr_a->push_cost += curr_a->target_node->index);
+		else
+		{
+			diff = len_b - curr_a->target_node->index;
+			curr_a->push_cost += diff;
+		}
+		curr_a = curr_a->next;
+	}
+}
+
+static void	set_cheapest(t_node *stack)
 {
 	long	cheapest_num;
-	t_node	*cheapest_node;//ptr to point to cheapest node so far as iterating through. when complete sets its "cheapest" value to 1.
+	t_node	*cheapest_node;
 	t_node	*current;
 
-	if (!stack)
-		error_n_exit(NULL, 0);
 	current = stack;
 	cheapest_num = LONG_MAX;
 	while (current)
@@ -112,9 +116,9 @@ static void	set_cheapest(t_node *stack)//compares push_cost of nodes and sets 1 
 
 void	init_nodes_a(t_node *a, t_node *b)
 {
-	current_index(a);//adds index to A nodes and position above/below median. 
-	current_index(b);//as  above for B.
-	set_target_a(a, b);//sets target in B for each A node: closest lower value.
-	cost_analysis_a(a, b);//stores push_cost for each node in A.
-	set_cheapest(a);//compares push_costs and sets "cheapest" value as 1 for chepaest node.
+	current_index(a);
+	current_index(b);
+	set_target_a(a, b);
+	cost_analysis(a, b);
+	set_cheapest(a);
 }
