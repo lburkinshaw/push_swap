@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 10:19:14 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/05 15:40:32 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:15:38 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,13 @@ void	create_a(int ac, char *av[], t_node **stack)
 	}
 	else
 		arguments = av + 1;
-	if (arguments[1] == NULL)
-		error_n_exit(arguments, split_flag);
 	check_valid(arguments, split_flag);
+	if (arguments[1] == NULL)
+	{
+		if (split_flag)
+			free_split(arguments);
+		exit (0);
+	}
 	add_to_stack(arguments, stack, split_flag);
 	if (split_flag)
 		free_split(arguments);

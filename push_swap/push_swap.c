@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 10:11:47 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/05 15:09:52 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:33:36 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int	main(int argc, char *argv[])
 	if (argc == 1)
 		return (1);
 	if (argc == 2 && argv[1][0] == '\0')
-		error_n_exit(NULL, 0);
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
 	create_a(argc, argv, &a);
 	sort_stack(&a, &b);
 	free_stack(&a);

@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:57:10 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/05 12:25:57 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:54:05 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	sort_stack(t_node **a, t_node **b)
 	if (check_sorted(*a) == 1)
 	{
 		free_stack(a);
-		exit(1);
+		exit(0);
 	}
 	if (count_nodes(*a) == 2)
 		sa(a);
