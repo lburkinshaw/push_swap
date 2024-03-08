@@ -6,7 +6,7 @@
 #    By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 12:00:18 by lburkins          #+#    #+#              #
-#    Updated: 2024/03/04 14:01:56 by lburkins         ###   ########.fr        #
+#    Updated: 2024/03/07 13:57:06 by lburkins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,25 +26,29 @@ CFILES =	push_swap.c \
 			init_nodes_a.c \
 			init_nodes_b.c
 
+OFILES = $(CFILES:.c=.o)
+
 CFLAGS = -Wall -Wextra -Werror
 
 LIBFT = libft/libft.a
 
-all: libft $(NAME)
+all: $(NAME)
 
-$(NAME): $(CFILES) $(LIBFT)
-	cc $(CFLAGS) $(CFILES) $(LIBFT) -o $(NAME)
+$(NAME): $(OFILES)
+	cd libft && make all
+	cc $(CFLAGS) $(OFILES) $(LIBFT) -o $(NAME)
 
 libft:
 	make -C libft
 
 clean:
-	make clean -C libft
+	rm -f $(OFILES)
+	cd libft && make clean
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C libft
+	cd libft && make fclean
 
 re: fclean all
 
-.PHONY: all libft clean fclean re
+.PHONY: all clean fclean re

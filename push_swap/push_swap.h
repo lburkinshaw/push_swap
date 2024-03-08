@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:16:40 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/04 14:03:55 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/07 10:43:39 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 # include <stdlib.h>
 # include <limits.h>
 
-typedef struct node
+typedef struct s_node
 {
-	int			num;
-	int			index;
-	int			push_cost;
-	int			above_median;
-	int			cheapest;
-	struct node	*target_node;
-	struct node	*next;
-	struct node	*prev;
+	int				num;
+	int				index;
+	int				push_cost;
+	int				above_median;
+	int				cheapest;
+	struct s_node	*target_node;
+	struct s_node	*next;
+	struct s_node	*prev;
 }	t_node;
 
 int		main(int argc, char	*argv[]);

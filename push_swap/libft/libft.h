@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:49:49 by lburkins          #+#    #+#             */
-/*   Updated: 2024/02/01 16:12:32 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:09:03 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 typedef struct s_list
 {
-	void			*content;//int for pushswap
+	void			*content;
 	struct s_list	*next;
 }					t_list;
 
