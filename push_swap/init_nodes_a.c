@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:16:49 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/05 13:45:34 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:45:31 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	set_target_a(t_node *a, t_node *b)
 {
 	t_node	*curr_a;
 	t_node	*curr_b;
-	t_node	*target_node;
+	t_node	*temp_target;
 	long	best_match;
 
 	curr_a = a;
@@ -54,14 +54,14 @@ static void	set_target_a(t_node *a, t_node *b)
 			if ((curr_b->num < curr_a->num) && curr_b->num > best_match)
 			{
 				best_match = curr_b->num;
-				target_node = curr_b;
+				temp_target = curr_b;
 			}
 			curr_b = curr_b->next;
 		}
 		if (best_match == LONG_MIN)
 			curr_a->target_node = find_max(b);
 		else
-			curr_a->target_node = target_node;
+			curr_a->target_node = temp_target;
 		curr_a = curr_a->next;
 	}
 }

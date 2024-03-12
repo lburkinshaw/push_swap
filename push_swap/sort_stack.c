@@ -6,7 +6,7 @@
 /*   By: lburkins <lburkins@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:57:10 by lburkins          #+#    #+#             */
-/*   Updated: 2024/03/06 10:54:05 by lburkins         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:51:42 by lburkins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	sort_three(t_node **stack)
 		sa(stack);
 }
 
-static void	sort_five(t_node **a, t_node **b)
+static void	sort_four_five(t_node **a, t_node **b)
 {
 	t_node	*min_node;
 
@@ -53,8 +53,8 @@ static void	sort_five(t_node **a, t_node **b)
 		pb(b, a);
 	}
 	sort_three(a);
-	pa(a, b);
-	pa(a, b);
+	while (*b)
+		pa(a, b);
 }
 
 static void	sort_more(t_node **a, t_node **b)
@@ -97,8 +97,8 @@ void	sort_stack(t_node **a, t_node **b)
 		sa(a);
 	else if (count_nodes(*a) == 3)
 		sort_three(a);
-	else if (count_nodes(*a) == 5)
-		sort_five(a, b);
+	else if (count_nodes(*a) == 4 || count_nodes(*a) == 5)
+		sort_four_five(a, b);
 	else
 		sort_more(a, b);
 }
