@@ -1,4 +1,4 @@
-# push_swap
+# push_swap 🔃
 ## A sorting algorithm in C using two stacks and linked lists
 
 A project created as part of my studies at Hive Helsinki.
